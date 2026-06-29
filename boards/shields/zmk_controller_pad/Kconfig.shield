@@ -1,0 +1,2 @@
+config SHIELD_ZMK_CONTROLLER_PAD
+    def_bool $(shields_list_contains,zmk_controller_pad)
