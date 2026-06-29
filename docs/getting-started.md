@@ -140,6 +140,18 @@ The script copies the UF2 file to the bootloader volume. The board should reboot
 
 If the host previously paired the board under another name, remove the old pairing first.
 
+## Bluetooth Reliability
+
+The default firmware disables ZMK deep sleep:
+
+```conf
+CONFIG_ZMK_SLEEP=n
+```
+
+This keeps the Bluetooth HID connection responsive after idle periods. It also avoids the failure mode where the host still lists the controller as paired or connected, but the next encoder movement or button press does not send media keys.
+
+The button scan node is also marked as a wake source in the shield overlay. That keeps the configuration compatible with future sleep experiments, but the public default favors reliable reconnect behavior over maximum battery life.
+
 ## Adjustments
 
 Invert volume direction in `config/zmk_controller_pad.keymap`:

@@ -114,6 +114,12 @@ The board should reboot automatically after the UF2 file is copied.
 
 If the device was already paired under a previous name, remove the old pairing and scan again.
 
+## Bluetooth Reliability
+
+Deep sleep is disabled by default with `CONFIG_ZMK_SLEEP=n`. This keeps the controller available after idle periods and avoids a stale Bluetooth connection where the host still shows the device but media keys no longer arrive.
+
+The tradeoff is higher battery use. If you want maximum battery life, you can re-enable ZMK sleep, but test wake and reconnect behavior on your exact board and host OS.
+
 ## Documentation
 
 - [Getting started, wiring, build, and flashing](docs/getting-started.md)
